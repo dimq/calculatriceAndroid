@@ -18,11 +18,12 @@
             android:id="@+id/textView1"
             android:layout_width="match_parent"
             android:layout_height="105dp"
-            android:text="TextView" />
+            android:text="TextView" 
+            android:layout_gravity="right"/>
     </LinearLayout>
 
    <LinearLayout
-       android:layout_width="match_parent"
+       android:layout_width="wrap_content"
        android:layout_height="wrap_content" >
 
         <Button
@@ -44,15 +45,15 @@
             android:text="9" />
 
         <Button
-            android:id="@+id/erase"
+            android:id="@+id/adition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="C" />
+            android:text="+" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
         <Button
@@ -81,7 +82,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
         <Button
@@ -110,7 +111,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
         <Button
@@ -124,11 +125,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0" />
+
         <Button
-            android:id="@+id/adition"
+            android:id="@+id/erase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+" />
+            android:text="C" />
 
         <Button
             android:id="@+id/divide"
@@ -139,14 +141,13 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="256dp"
         android:layout_height="wrap_content" >
 
         <Button
             android:id="@+id/egale"
-            android:layout_width="211dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.43"
             android:text="=" />
 
     </LinearLayout>

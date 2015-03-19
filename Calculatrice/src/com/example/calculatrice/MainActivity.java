@@ -3,7 +3,6 @@ package com.example.calculatrice;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,6 +46,7 @@ public class MainActivity extends Activity
         erase = (Button) findViewById(R.id.erase);
         un.setOnClickListener(new OnClickListener()
         {
+            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -59,6 +59,7 @@ public class MainActivity extends Activity
         });
         deux.setOnClickListener(new OnClickListener()
         {
+            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -71,6 +72,7 @@ public class MainActivity extends Activity
         });
         trois.setOnClickListener(new OnClickListener()
         {
+            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -83,6 +85,7 @@ public class MainActivity extends Activity
         });
         quatre.setOnClickListener(new OnClickListener()
         {
+            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -95,6 +98,7 @@ public class MainActivity extends Activity
         });
         cinq.setOnClickListener(new OnClickListener()
         {
+            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -107,6 +111,7 @@ public class MainActivity extends Activity
         });
         six.setOnClickListener(new OnClickListener()
         {
+            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -119,6 +124,7 @@ public class MainActivity extends Activity
         });
         sept.setOnClickListener(new OnClickListener()
         {
+            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -131,6 +137,7 @@ public class MainActivity extends Activity
         });
         huit.setOnClickListener(new OnClickListener()
         {
+            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -143,6 +150,7 @@ public class MainActivity extends Activity
         });
         neuf.setOnClickListener(new OnClickListener()
         {
+            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -155,6 +163,7 @@ public class MainActivity extends Activity
         });
         zero.setOnClickListener(new OnClickListener()
         {
+            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -167,6 +176,7 @@ public class MainActivity extends Activity
         });
         egale.setOnClickListener(new OnClickListener()
         {
+            @Override
             public void onClick(View v)
             {
                 Calculer();
@@ -174,6 +184,7 @@ public class MainActivity extends Activity
         });
         diviser.setOnClickListener(new OnClickListener()
         {
+            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -187,6 +198,7 @@ public class MainActivity extends Activity
         });
         multiplier.setOnClickListener(new OnClickListener()
         {
+            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -200,6 +212,7 @@ public class MainActivity extends Activity
         });
         moins.setOnClickListener(new OnClickListener()
         {
+            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -213,6 +226,7 @@ public class MainActivity extends Activity
         });
         plus.setOnClickListener(new OnClickListener()
         {
+            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -226,6 +240,7 @@ public class MainActivity extends Activity
         });
         point.setOnClickListener(new OnClickListener()
         {
+            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -238,9 +253,19 @@ public class MainActivity extends Activity
         });
         erase.setOnClickListener(new OnClickListener()
         {
+            @Override
             public void onClick(View v)
             {
-                resultat.setText(((String) resultat.getText()).substring(0,resultat.getText().length()-1));
+                int test = resultat.getText().length();
+                if (test > 0)
+                {
+                    test = test -1;
+                }
+                else
+                {
+                    test=test;
+                }
+                resultat.setText(((String) resultat.getText()).substring(0,test));
             }
         });
     }
@@ -258,6 +283,7 @@ public class MainActivity extends Activity
         double chiffre2;
         String[] tabresult;
         String result = (String) resultat.getText();
+        result = result.replace(",", ".");
         switch (operation){
         case "/":
             tabresult = result.split("\\/");

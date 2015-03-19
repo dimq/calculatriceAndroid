@@ -1,5 +1,6 @@
 package com.example.calculatrice;
 
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +14,7 @@ import android.widget.TextView;
 public class MainActivity extends Activity
 {
     private TextView resultat;
-    private Button un,deux,trois,quatre,cinq,six,sept,huit,neuf,zero,diviser,multiplier,moins,plus,egale,point;
+    private Button un,deux,trois,quatre,cinq,six,sept,huit,neuf,zero,diviser,multiplier,moins,plus,egale,point,erase;
     private String operation = "";
     boolean flag = false;
     @Override
@@ -43,7 +44,7 @@ public class MainActivity extends Activity
         plus = (Button) findViewById(R.id.adition);
         egale = (Button) findViewById(R.id.egale);
         point = (Button) findViewById(R.id.point);
-        
+        erase = (Button) findViewById(R.id.erase);
         un.setOnClickListener(new OnClickListener()
         {
             public void onClick(View v)
@@ -223,6 +224,25 @@ public class MainActivity extends Activity
                 ChiffreAppuyer("+");
             }
         });
+        point.setOnClickListener(new OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                if (flag)
+                {
+                    resultat.setText("");
+                    flag = false;
+                }
+                ChiffreAppuyer(",");
+            }
+        });
+        erase.setOnClickListener(new OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                resultat.setText(((String) resultat.getText()).substring(0,resultat.getText().length()-1));
+            }
+        });
     }
     public void ChiffreAppuyer(String valeur)
     {
@@ -241,26 +261,26 @@ public class MainActivity extends Activity
         switch (operation){
         case "/":
             tabresult = result.split("\\/");
-            chiffre1 =Integer.parseInt(tabresult[0]);
-            chiffre2 =Integer.parseInt(tabresult[1]);
+            chiffre1 =Double.parseDouble(tabresult[0]);
+            chiffre2 =Double.parseDouble(tabresult[1]);
             total = chiffre1 / chiffre2;
             break;
         case "+":
             tabresult = result.split("\\+");
-            chiffre1 =Integer.parseInt(tabresult[0]);
-            chiffre2 =Integer.parseInt(tabresult[1]);
+            chiffre1 =Double.parseDouble(tabresult[0]);
+            chiffre2 =Double.parseDouble(tabresult[1]);
             total = chiffre1 + chiffre2;
             break;
         case "-":
             tabresult = result.split("\\-");
-            chiffre1 =Integer.parseInt(tabresult[0]);
-            chiffre2 =Integer.parseInt(tabresult[1]);
+            chiffre1 =Double.parseDouble(tabresult[0]);
+            chiffre2 =Double.parseDouble(tabresult[1]);
             total = chiffre1 - chiffre2;
             break;
         case "x":
             tabresult = result.split("x");
-            chiffre1 =Integer.parseInt(tabresult[0]);
-            chiffre2 =Integer.parseInt(tabresult[1]);
+            chiffre1 =Double.parseDouble(tabresult[0]);
+            chiffre2 =Double.parseDouble(tabresult[1]);
             total = chiffre1 * chiffre2;
             break;
         }

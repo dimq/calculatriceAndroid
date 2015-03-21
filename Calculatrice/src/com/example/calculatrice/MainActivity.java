@@ -3,6 +3,7 @@ package com.example.calculatrice;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,7 +16,8 @@ public class MainActivity extends Activity
     private TextView resultat;
     private Button un,deux,trois,quatre,cinq,six,sept,huit,neuf,zero,diviser,multiplier,moins,plus,egale,point,erase;
     private String operation = "";
-    boolean flag = false;
+    private boolean flag = false;
+    private String totalExtended = "0";
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -46,7 +48,6 @@ public class MainActivity extends Activity
         erase = (Button) findViewById(R.id.erase);
         un.setOnClickListener(new OnClickListener()
         {
-            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -59,7 +60,6 @@ public class MainActivity extends Activity
         });
         deux.setOnClickListener(new OnClickListener()
         {
-            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -72,7 +72,6 @@ public class MainActivity extends Activity
         });
         trois.setOnClickListener(new OnClickListener()
         {
-            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -85,7 +84,6 @@ public class MainActivity extends Activity
         });
         quatre.setOnClickListener(new OnClickListener()
         {
-            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -98,7 +96,6 @@ public class MainActivity extends Activity
         });
         cinq.setOnClickListener(new OnClickListener()
         {
-            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -111,7 +108,6 @@ public class MainActivity extends Activity
         });
         six.setOnClickListener(new OnClickListener()
         {
-            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -124,7 +120,6 @@ public class MainActivity extends Activity
         });
         sept.setOnClickListener(new OnClickListener()
         {
-            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -137,7 +132,6 @@ public class MainActivity extends Activity
         });
         huit.setOnClickListener(new OnClickListener()
         {
-            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -150,7 +144,6 @@ public class MainActivity extends Activity
         });
         neuf.setOnClickListener(new OnClickListener()
         {
-            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -163,7 +156,6 @@ public class MainActivity extends Activity
         });
         zero.setOnClickListener(new OnClickListener()
         {
-            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -176,7 +168,6 @@ public class MainActivity extends Activity
         });
         egale.setOnClickListener(new OnClickListener()
         {
-            @Override
             public void onClick(View v)
             {
                 Calculer();
@@ -184,7 +175,6 @@ public class MainActivity extends Activity
         });
         diviser.setOnClickListener(new OnClickListener()
         {
-            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -193,12 +183,11 @@ public class MainActivity extends Activity
                     flag = false;
                 }
                 operation = "/";
-                ChiffreAppuyer("/");
+                OperateurAppuyer("/");
             }
         });
         multiplier.setOnClickListener(new OnClickListener()
         {
-            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -207,12 +196,11 @@ public class MainActivity extends Activity
                     flag = false;
                 }
                 operation = "x";
-                ChiffreAppuyer("x");
+                OperateurAppuyer("x");
             }
         });
         moins.setOnClickListener(new OnClickListener()
         {
-            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -221,12 +209,11 @@ public class MainActivity extends Activity
                     flag = false;
                 }
                 operation = "-";
-                ChiffreAppuyer("-");
+                OperateurAppuyer("-");
             }
         });
         plus.setOnClickListener(new OnClickListener()
         {
-            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -235,12 +222,11 @@ public class MainActivity extends Activity
                     flag = false;
                 }
                 operation = "+";
-                ChiffreAppuyer("+");
+                OperateurAppuyer("+");
             }
         });
         point.setOnClickListener(new OnClickListener()
         {
-            @Override
             public void onClick(View v)
             {
                 if (flag)
@@ -253,25 +239,39 @@ public class MainActivity extends Activity
         });
         erase.setOnClickListener(new OnClickListener()
         {
-            @Override
             public void onClick(View v)
             {
-                int test = resultat.getText().length();
-                if (test > 0)
-                {
-                    test = test -1;
-                }
-                else
-                {
-                    test=test;
-                }
-                resultat.setText(((String) resultat.getText()).substring(0,test));
+            	int longueur = resultat.getText().length();
+            	if (resultat.getText().length() <= 0)
+            	{
+            		longueur = 0;
+            	}
+            	else
+            	{
+            		longueur = longueur-1;
+            	}
+                resultat.setText(((String) resultat.getText()).substring(0,longueur));
             }
         });
     }
     public void ChiffreAppuyer(String valeur)
     {
         String base =(String) resultat.getText();
+        base = base + valeur;
+        resultat.setText(base);
+    }
+    public void OperateurAppuyer(String valeur)
+    {
+    	String base;
+    	if (resultat.getText().equals(""))
+    	{
+    		base = totalExtended;
+    	}
+    	else
+    	{
+    		base =(String) resultat.getText();
+    	}
+        
         base = base + valeur;
         resultat.setText(base);
     }
@@ -310,6 +310,7 @@ public class MainActivity extends Activity
             total = chiffre1 * chiffre2;
             break;
         }
+        totalExtended = String.valueOf(total);
         resultat.setText(String.valueOf(total));
     }
 
